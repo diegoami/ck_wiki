@@ -5,7 +5,7 @@ they are waiting for. It is where two other projects meet:
 
 | Project | What it puts here |
 |---|---|
-| [`diegoami/Ck-parser`](https://github.com/diegoami/Ck-parser) | the code that reads the saves and writes the pages |
+| [`diegoami/Ck-parser`](https://github.com/diegoami/Ck-parser) | the code that reads the saves and writes the pages — code only, no data |
 | [`diegoami/ck_portrait_generator`](https://github.com/diegoami/ck_portrait_generator) | the harvested portraits and coats of arms, committed to `images/` |
 
 Neither imports the other. They agree on file names and nothing else.
@@ -19,8 +19,8 @@ portraits.json     what the wiki wants, across all chronicles
 ```
 
 The pages themselves are **not** committed. They are built on every run from
-the parser plus the saves attached to Ck-parser's Releases, and published as a
-Pages artifact, so a rebuild is never a five-thousand-file diff. The manifests
+the parser plus the saves attached to **this repository's** Releases, and
+published as a Pages artifact, so a rebuild is never a five-thousand-file diff. The manifests
 *are* committed, because they are the companion's work queue and it should be
 able to read them straight from git.
 
@@ -35,13 +35,23 @@ Images live in `images/` as well, and that is the copy the site serves; a push
 there is what triggers a build. The release is the archive, the directory is the
 live copy, and a file belongs in both.
 
-**A release is a batch, not a run.** Do not group saves by it. The Germania
-chronicle's three saves are on three separate releases of `Ck-parser` — 0.0.2,
-0.0.3 and 0.0.4, one save each — so grouping by release would split one
-playthrough into three single-snapshot chronicles. Which run a save belongs to
-is decided by its fingerprint: seed, game version and bookmark date. Every
+Releases here are tagged with the run's **random seed** — `576691683`,
+`633048653`, `1370892195` — so one release holds one playthrough. That is the
+arrangement to keep to, because it makes a release readable.
+
+**But nothing in the build depends on it.** `fetch_saves.sh` reads every
+release, deduplicates by checksum, and decides which run a save belongs to from
+its own fingerprint: seed, game version and bookmark date. So a save filed under
+the wrong tag still lands in the right chronicle, and a save from a run nobody
+has seen can go anywhere at all — which matters, because the seed lives inside
+the zipped gamestate and cannot be read off the file without a parser. Every
 manifest records the release a save came from (`saves[].release`) purely so you
 can tell where it arrived from.
+
+Until recently the saves were on `Ck-parser`'s Releases, batch-numbered 0.0.2,
+0.0.3 and 0.0.4 — with the Germania run spread across all three. Grouping by
+release would have split one playthrough into three single-snapshot chronicles.
+That is why the fingerprint decides and the tag does not.
 
 ## Adding an image
 
@@ -103,8 +113,8 @@ companion drops them on principle.
 
 A chronicle is one game, identified by its random seed and the game version it
 was started on — never by the title it happens to be about. Saves are grouped
-into runs automatically, so attaching a save from a different game to
-Ck-parser's Releases adds a chronicle here with no configuration.
+into runs automatically, so attaching a save from a different game to **this
+repository's** Releases adds a chronicle here with no configuration.
 
 ## The one setting this needs
 
