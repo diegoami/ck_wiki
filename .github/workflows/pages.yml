@@ -70,6 +70,12 @@ jobs:
         run: scripts/fetch_saves.sh saves
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          # The saves are on Ck-parser's Releases, not this repository's. Both
+          # names are set because which one the script reads depends on the ref
+          # being built: GITHUB_REPOSITORY would otherwise name ck_wiki, and
+          # the fetch finds nothing.
+          SAVES_REPO: diegoami/Ck-parser
+          GITHUB_REPOSITORY: diegoami/Ck-parser
       - name: Build the wikis
         # No --title: each run's chronicle is about its own played character's
         # primary title. Saves are grouped into runs automatically, so a save
