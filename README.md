@@ -87,6 +87,17 @@ was started on — never by the title it happens to be about. Saves are grouped
 into runs automatically, so attaching a save from a different game to
 Ck-parser's Releases adds a chronicle here with no configuration.
 
+## The one setting this needs
+
+Settings → Pages → Build and deployment → Source must be **GitHub Actions**,
+not "Deploy from a branch".
+
+Serving a branch is the usual way to publish a site, but it cannot work here:
+the pages are built per run and never committed, so a branch has no `index.html`
+to serve and the legacy Jekyll builder would publish this README instead. The
+`Wiki` workflow deploys the artifact it just built, which is the whole point of
+not committing it.
+
 ## Rebuilding
 
 Pushing to `images/` rebuilds. So does the weekly schedule, which is what picks
