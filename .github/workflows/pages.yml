@@ -30,9 +30,31 @@ on:
     paths:
       - "images/**"
       - ".github/workflows/pages.yml"
+
+  # A save arriving should rebuild the wiki. There are two triggers for that
+  # because the obvious one is not dependable.
+  release:
+    # Fires when a release is created, published or edited. It does NOT
+    # dependably fire when an asset is uploaded into a release that already
+    # exists -- which is precisely how a save is normally added, into the
+    # release for the run it belongs to. So this catches the case where a new
+    # run gets a new release, and is a convenience rather than the contract.
+    types: [created, published, released, prereleased, edited]
+
+  repository_dispatch:
+    # This is the one that always works, and the one to use. After uploading a
+    # save, whoever uploaded it sends:
+    #
+    #   gh api repos/diegoami/ck_wiki/dispatches -f event_type=saves-updated
+    #
+    # one API call, no waiting for a webhook that may not come. It is also what
+    # an agent should send when it has finished step 1 of the loop in
+    # Ck-parser's docs/COMPANION_PROPOSAL.md.
+    types: [saves-updated]
+
   schedule:
-    # Monday morning: picks up saves attached to Releases during the week
-    # without anyone having to remember to press the button.
+    # Backstop: picks up anything the triggers above missed, so a save can
+    # never sit unbuilt for more than a week even if nobody sends a dispatch.
     - cron: "17 6 * * 1"
   workflow_dispatch:
     inputs:
