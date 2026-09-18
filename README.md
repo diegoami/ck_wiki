@@ -24,6 +24,25 @@ Pages artifact, so a rebuild is never a five-thousand-file diff. The manifests
 *are* committed, because they are the companion's work queue and it should be
 able to read them straight from git.
 
+## Releases: the archive
+
+A finished batch of work is a release here, holding both halves of it: the
+**save files** it covers and the **images harvested from them**. A release is
+then self-contained — someone with only the release can rebuild that part of the
+chronicle and see it illustrated.
+
+Images live in `images/` as well, and that is the copy the site serves; a push
+there is what triggers a build. The release is the archive, the directory is the
+live copy, and a file belongs in both.
+
+**A release is a batch, not a run.** Do not group saves by it. The Germania
+chronicle's three saves are on three separate releases of `Ck-parser` — 0.0.2,
+0.0.3 and 0.0.4, one save each — so grouping by release would split one
+playthrough into three single-snapshot chronicles. Which run a save belongs to
+is decided by its fingerprint: seed, game version and bookmark date. Every
+manifest records the release a save came from (`saves[].release`) purely so you
+can tell where it arrived from.
+
 ## Adding an image
 
 Commit it to `images/`. That is the whole procedure.
