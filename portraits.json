@@ -4,33 +4,31 @@
     {
       "slug": "576691683-1-6-1-2",
       "manifest": "576691683-1-6-1-2/portraits.json",
-      "wanted": 2250,
-      "missing": 2250,
+      "wanted": 2313,
+      "missing": 2313,
       "releases": [
-        "0.0.2",
-        "0.0.3",
-        "0.0.4"
+        "576691683"
       ]
     },
     {
       "slug": "633048653-1-4-4",
       "manifest": "633048653-1-4-4/portraits.json",
-      "wanted": 1975,
-      "missing": 1975,
+      "wanted": 2045,
+      "missing": 2045,
       "releases": [
-        "2.0.0"
+        "633048653"
       ]
     },
     {
       "slug": "1370892195-1-3-1",
       "manifest": "1370892195-1-3-1/portraits.json",
-      "wanted": 1620,
-      "missing": 1620,
+      "wanted": 1705,
+      "missing": 1705,
       "releases": [
-        "1.0.0"
+        "1370892195"
       ]
     }
   ],
-  "wanted": 5845,
-  "missing": 5845
+  "wanted": 6063,
+  "missing": 6063
 }
