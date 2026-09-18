@@ -1,0 +1,25 @@
+{
+  "schema": "ck3-images/1",
+  "chronicles": [
+    {
+      "slug": "576691683-1-6-1-2",
+      "manifest": "576691683-1-6-1-2/portraits.json",
+      "wanted": 1606,
+      "missing": 1606
+    },
+    {
+      "slug": "633048653-1-4-4",
+      "manifest": "633048653-1-4-4/portraits.json",
+      "wanted": 1953,
+      "missing": 1953
+    },
+    {
+      "slug": "1370892195-1-3-1",
+      "manifest": "1370892195-1-3-1/portraits.json",
+      "wanted": 2071,
+      "missing": 2071
+    }
+  ],
+  "wanted": 5630,
+  "missing": 5630
+}
