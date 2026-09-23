@@ -134,8 +134,9 @@ not committing it.
 |---|---|---|
 | push to `images/**` | a capture is delivered | yes |
 | `repository_dispatch` `saves-updated` | anyone sends it | **yes — use this after uploading a save** |
+| `repository_dispatch` `parser-updated` | Ck-parser's CI, after every green push to its `main` | yes, once its token is set |
 | `release` | a release is created, published or edited | only for a *new* release |
-| `schedule`, Mondays | weekly | yes, but slow |
+| `schedule`, daily at 06:17 UTC | every day | yes, the backstop |
 | `workflow_dispatch` | someone presses the button | yes |
 
 ### After uploading a save, send the dispatch
@@ -148,9 +149,21 @@ One call, and the build starts. **Do not rely on the `release` trigger for
 this.** Uploading an asset into a release that already exists — which is how a
 save is normally added, into the release for the run it belongs to — does not
 dependably fire a release event. The `release` trigger is there for the case
-where a new run gets a new release, and the Monday schedule is the backstop
-that means nothing sits unbuilt for more than a week. The dispatch is the one
+where a new run gets a new release, and the daily schedule is the backstop
+that means nothing sits unbuilt for more than a day. The dispatch is the one
 that always works.
+
+### The parser rebuilds the wiki too
+
+The pages and the queue are only as current as the parser that built them.
+Until #2, nothing rebuilt when Ck-parser changed, so the published wiki and
+`portraits.json` waited up to a week for the Monday schedule — long enough for
+a review to count a five-day-old queue as current. Ck-parser's CI now sends
+`parser-updated` with its commit in `client_payload.ref`, and the build checks
+out exactly that commit. It needs a fine-grained token, stored in Ck-parser as
+`CK_WIKI_DISPATCH_TOKEN`, scoped to this repository only with **Contents: read
+and write**; without it Ck-parser's CI skips the step with a notice and the
+daily schedule still catches up.
 
 `workflow_dispatch` takes an optional Ck-parser ref, for trying a branch before
 it lands.
