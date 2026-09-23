@@ -1,11 +1,16 @@
 {
-  "schema": "ck3-images/2",
+  "schema": "ck3-images/3",
+  "docs": {
+    "names": "https://github.com/diegoami/Ck-parser/blob/main/docs/COMPANION_PROPOSAL.md#the-rule",
+    "contract": "https://github.com/diegoami/Ck-parser/blob/main/docs/COMPANION_PROPOSAL.md",
+    "images": "https://github.com/diegoami/ck_wiki/tree/main/images"
+  },
   "chronicles": [
     {
       "slug": "576691683-1-6-1-2",
       "manifest": "576691683-1-6-1-2/portraits.json",
-      "wanted": 2313,
-      "missing": 2313,
+      "wanted": 3081,
+      "missing": 3081,
       "releases": [
         "576691683"
       ]
@@ -13,8 +18,8 @@
     {
       "slug": "633048653-1-4-4",
       "manifest": "633048653-1-4-4/portraits.json",
-      "wanted": 2045,
-      "missing": 2045,
+      "wanted": 2486,
+      "missing": 2486,
       "releases": [
         "633048653"
       ]
@@ -22,13 +27,13 @@
     {
       "slug": "1370892195-1-3-1",
       "manifest": "1370892195-1-3-1/portraits.json",
-      "wanted": 1705,
-      "missing": 1705,
+      "wanted": 1934,
+      "missing": 1934,
       "releases": [
         "1370892195"
       ]
     }
   ],
-  "wanted": 6063,
-  "missing": 6063
+  "wanted": 7501,
+  "missing": 7501
 }
