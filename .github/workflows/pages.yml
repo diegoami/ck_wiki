@@ -29,6 +29,7 @@ on:
     branches: [main]
     paths:
       - "images/**"
+      - "localization.json"
       - ".github/workflows/pages.yml"
 
   # A save arriving should rebuild the wiki. There are two triggers for that
@@ -121,8 +122,11 @@ jobs:
         # from a new playthrough becomes a new chronicle with no config change.
         working-directory: .parser
         run: |
+          # the game's own words for names and causes of death (Ck-parser#31):
+          # this machine has no game, so it reads the extract committed here
           uv run python -m ck3wiki.build saves --out ../site \
             --portraits ../images \
+            $( [ -f ../localization.json ] && echo "--localization ../localization.json" ) \
             ${{ inputs.title && format('--title {0}', inputs.title) || '' }}
       - name: Commit the manifests, so the companion can read its queue from git
         run: |
