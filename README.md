@@ -1,5 +1,11 @@
 # ck_wiki — the published CK3 chronicles
 
+**[Read the published chronicles →](https://diegoami.github.io/ck_wiki/)**
+
+Browse the example playthroughs, rulers, families and titles on the live site.
+For the library, CLI and desktop project being developed from the parser, see
+[ck3-chronicle](https://github.com/diegoami/ck3-chronicle).
+
 This repository publishes the Crusader Kings III wikis and holds the images
 they are waiting for. It is where two other projects meet:
 
